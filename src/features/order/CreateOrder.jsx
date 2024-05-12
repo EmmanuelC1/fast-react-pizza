@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, redirect } from 'react-router-dom';
+import { Form, redirect, useActionData, useNavigation } from 'react-router-dom';
 import { createOrder } from '../../services/apiRestaurant';
 
 // https://uibakery.io/regex-library/phone-number
@@ -33,6 +33,12 @@ const fakeCart = [
 ];
 
 function CreateOrder() {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === 'submitting';
+
+  // Hook to get access to data that is returned from action function (any form errors in this case)
+  const formErrors = useActionData();
+
   // const [withPriority, setWithPriority] = useState(false);
   const cart = fakeCart;
 
@@ -53,6 +59,7 @@ function CreateOrder() {
           <div>
             <input type="tel" name="phone" required />
           </div>
+          {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
 
         <div>
@@ -76,7 +83,9 @@ function CreateOrder() {
         <div>
           {/* hidden input to also submit cart data coming from Redux */}
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <button>Order now</button>
+          <button disabled={isSubmitting}>
+            {isSubmitting ? 'Placing order...' : 'Order now'}
+          </button>
         </div>
       </Form>
     </div>
@@ -95,7 +104,14 @@ export async function action({ request }) {
     priority: data.priority === 'on', // check if priority checkbox is checked (result will be true/false not on/off)
   };
 
-  const newOrder = await createOrder(order);
+  const errors = {};
+  if (!isValidPhone(order.phone)) {
+    errors.phone = 'Please enter a valid phone number.';
+  }
+
+  if (Object.keys(errors).length > 0) return errors; // return errors object, if any
+
+  const newOrder = await createOrder(order); // place order
 
   // redirect function from React Router to navigate to new component/path. Can't use navigate as before because that is a hook and only can be used inside components and not functions
   return redirect(`/order/${newOrder.id}`);
