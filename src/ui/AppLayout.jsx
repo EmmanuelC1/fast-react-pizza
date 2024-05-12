@@ -10,11 +10,10 @@ function AppLayout() {
 
   return (
     <div className="layout">
-      {isLoading && <Loader />}
-
       <Header />
 
       <main>
+        {isLoading && <Loader />}
         {/* Outlet is to render the current nested/child route */}
         <Outlet />
       </main>

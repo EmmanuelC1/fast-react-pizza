@@ -5,7 +5,7 @@ import Error from './ui/Error';
 import Menu, { loader as menuLoader } from './features/menu/Menu';
 import Cart from './features/cart/Cart';
 import CreateOrder from './features/order/CreateOrder';
-import Order from './features/order/Order';
+import Order, { loader as orderLoader } from './features/order/Order';
 import AppLayout from './ui/AppLayout';
 
 // Creating the Browser Route, AppLayout as the parent and having all the other routes, nested as children
@@ -25,7 +25,12 @@ const router = createBrowserRouter([
       },
       { path: '/cart', element: <Cart /> },
       { path: '/order/new', element: <CreateOrder /> },
-      { path: '/order/:orderId', element: <Order /> },
+      {
+        path: '/order/:orderId',
+        element: <Order />,
+        loader: orderLoader,
+        errorElement: <Error />,
+      },
     ],
   },
 ]);
