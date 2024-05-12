@@ -52,6 +52,7 @@ function Order() {
   );
 }
 
+// once Order component is loaded, React Router will call this loader function
 export async function loader({ params }) {
   // params.orderId coming from the params set on /order/:orderId route in App.jsx (possible w/ React Router)
   const order = await getOrder(params.orderId);

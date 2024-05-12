@@ -15,6 +15,7 @@ function Menu() {
   );
 }
 
+// once Menu component is loaded, React Router will call this loader function
 export async function loader() {
   const menu = await getMenu();
   return menu;
