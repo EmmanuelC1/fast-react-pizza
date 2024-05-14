@@ -85,7 +85,7 @@ function CreateOrder() {
         <div>
           {/* hidden input to also submit cart data coming from Redux */}
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <Button disabled={isSubmitting}>
+          <Button disabled={isSubmitting} type={'primary'}>
             {isSubmitting ? 'Placing order...' : 'Order now'}
           </Button>
         </div>
