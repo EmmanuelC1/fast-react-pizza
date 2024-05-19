@@ -30,7 +30,7 @@ function Button({ children, disabled, to, type, onClick }) {
     );
   }
 
-  // simple button, only classname and disabled props
+  // simple button, only classname and disabled prop
   return (
     <button disabled={disabled} className={styles[type]}>
       {children}
