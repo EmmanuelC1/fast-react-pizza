@@ -1,5 +1,8 @@
 const API_URL = 'https://react-fast-pizza-api.onrender.com/api';
 
+/** Makes API call to retrieve pizza menu data
+ * @returns {Array.<object>}
+ */
 export async function getMenu() {
   const res = await fetch(`${API_URL}/menu`);
 
@@ -10,6 +13,10 @@ export async function getMenu() {
   return data;
 }
 
+/** Takes in an order ID and returns data regarding that order
+ * @param {Number} id The order ID
+ * @returns {object}
+ */
 export async function getOrder(id) {
   const res = await fetch(`${API_URL}/order/${id}`);
   if (!res.ok) throw Error(`Couldn't find order #${id}`);
@@ -18,6 +25,10 @@ export async function getOrder(id) {
   return data;
 }
 
+/** Takes in ```order``` object and makes a POST request to the API to submit a new order.
+ * @param {object} newOrder The new order to be added to API
+ * @returns {object} Returns a new object with the order data and newly created order ID
+ */
 export async function createOrder(newOrder) {
   try {
     const res = await fetch(`${API_URL}/order`, {
@@ -36,6 +47,10 @@ export async function createOrder(newOrder) {
   }
 }
 
+/** Takes in number and object to update a specific order by making a PATCH request to API
+ * @param {Number} id The id of the order to be updated
+ * @param {object} updateObj The object containing the updates to the order
+ */
 export async function updateOrder(id, updateObj) {
   try {
     const res = await fetch(`${API_URL}/order/${id}`, {

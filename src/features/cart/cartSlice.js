@@ -48,14 +48,21 @@ export const {
 
 export default cartSlice.reducer;
 
+/** Returns Redux ```cart``` state @returns {Array<object>} */
 export const getCart = (state) => state.cart.cart;
 
+/** Returns total number of items in the cart @returns {Number} */
 export const getTotalCartQuantity = (state) =>
   state.cart.cart.reduce((acc, curItem) => (acc += curItem.quantity), 0);
 
+/** Returns total price of current items in cart. Does NOT include priority price @returns {Number} */
 export const getTotalCartPrice = (state) =>
   state.cart.cart.reduce((acc, curItem) => (acc += curItem.totalPrice), 0);
 
+/** Returns current quantity of a specific item given the item id
+ * @param {Number} id The item ID
+ * @returns {Number} quantity of item
+ */
 export const getCurrentQuantityByID = (id) => (state) => {
   const item = state.cart.cart.find((curItem) => curItem.pizzaId === id);
   return item?.quantity ?? 0;

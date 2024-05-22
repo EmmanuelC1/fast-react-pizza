@@ -1,12 +1,14 @@
 import { getAddress } from '../../services/apiGeocoding';
 import { createSlice } from '@reduxjs/toolkit';
 
+/** Gets users current geolocation position object @returns {Promise} */
 function getPosition() {
   return new Promise(function (resolve, reject) {
     navigator.geolocation.getCurrentPosition(resolve, reject);
   });
 }
 
+/** Return users position (latitude, longitude) and address (locality, city, postcode, country) @returns {object} */
 async function fetchAddress() {
   // 1) We get the user's geolocation position
   const positionObj = await getPosition();
@@ -40,4 +42,5 @@ const userSlice = createSlice({
 export const { updateName } = userSlice.actions;
 export default userSlice.reducer;
 
+/** Returns username of current user @returns {String} */
 export const getUsername = (state) => state.user.username;
