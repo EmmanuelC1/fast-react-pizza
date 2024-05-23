@@ -23,7 +23,6 @@ function Order() {
     estimatedDelivery,
     cart,
   } = order;
-  console.log(order);
 
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
@@ -79,6 +78,7 @@ function Order() {
 }
 
 // once Order component is loaded, React Router will call this loader function
+// eslint-disable-next-line react-refresh/only-export-components
 export async function loader({ params }) {
   // params.orderId coming from the params set on /order/:orderId route in App.jsx (possible w/ React Router)
   const order = await getOrder(params.orderId);

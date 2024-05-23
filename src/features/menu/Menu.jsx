@@ -16,8 +16,9 @@ function Menu() {
 }
 
 // once Menu component is loaded, React Router will call this loader function
+// eslint-disable-next-line react-refresh/only-export-components
 export async function loader() {
-  const menu = await getMenu();
+  const menu = getMenu();
   return menu;
 }
 

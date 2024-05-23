@@ -153,6 +153,7 @@ function CreateOrder() {
 
 // once Form is submitted React Router will call the action function behind the scene (just like the loader function)
 // 'request' will be passed in to action func
+// eslint-disable-next-line react-refresh/only-export-components
 export async function action({ request }) {
   const formData = await request.formData(); // formData() is a regular web API provided from the browser
   const data = Object.fromEntries(formData); // turn formData into object
@@ -162,8 +163,6 @@ export async function action({ request }) {
     cart: JSON.parse(data.cart),
     priority: data.priority === 'true',
   };
-
-  console.log(order);
 
   const errors = {};
   if (!isValidPhone(order.phone)) {
