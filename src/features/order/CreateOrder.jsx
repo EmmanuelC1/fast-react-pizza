@@ -54,12 +54,12 @@ function CreateOrder() {
       {/* <Form method='POST' action='/order/new'> */}
       <Form method="POST">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="sm:basis-40">First Name</label>
+          <label className="sm:basis-40">Full Name</label>
           <input
             type="text"
             name="customer"
             required
-            className="input grow"
+            className="input grow capitalize"
             defaultValue={username}
           />
         </div>
