@@ -9,7 +9,7 @@ function SearchOrder() {
     e.preventDefault();
     if (!query) return;
 
-    navigate(`/order/${query}`);
+    navigate(`/order/${query.toUpperCase()}`);
     setQuery('');
   }
 
