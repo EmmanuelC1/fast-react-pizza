@@ -1,6 +1,6 @@
 # Fast React Pizza Co.
 
-Fast React Pizza Co. is a React website that allows users to browse a pizza menu and place orders. Built for learning purposes with **React, React Router, Redux ToolKit, and  TailwindCSS**.
+Fast React Pizza Co. is a React website that allows users to browse a pizza menu and place orders. Built for learning purposes with **React, React Router, Redux ToolKit, TailwindCSS, and Vite**.
 
 # Built With
 [![Built With](https://skillicons.dev/icons?i=js,html,react,redux,tailwind,vite,netlify,vscode&perline=4)](https://skillicons.dev)
